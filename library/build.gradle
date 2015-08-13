@@ -14,7 +14,7 @@ android {
     targetSdkVersion parent.ext.androidTargetSdkVersion
     versionCode parent.ext.androidVersionCode
     versionName parent.ext.androidVersionName
-    archivesBaseName = "AndroidFillableLoader"
+    archivesBaseName = "AndroidFillableLoaders"
   }
   buildTypes {
     release {
