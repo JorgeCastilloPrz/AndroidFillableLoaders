@@ -2,6 +2,7 @@ Android FillableLoaders
 =======================
 [![Build Status](https://travis-ci.org/JorgeCastilloPrz/AndroidFillableLoaders.svg?branch=master)](https://travis-ci.org/JorgeCastilloPrz/AndroidFillableLoaders)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.jorgecastilloprz/fillableloaders/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.jorgecastilloprz/fillableloaders)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 
 Android Open Source library providing an interesting fillable progress view working with SVG paths.
 This is a nice option too if you want to create an interesting branding logo for your app.
