@@ -27,24 +27,24 @@ android {
 def siteUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders'
 def gitUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders.git'
 
-bintray {
-  user = bintrayUser
-  key = bintrayKey
-
-  configurations = ['archives'] //When uploading configuration files
-  pkg {
-    repo = 'maven'
-    name = 'AndroidFillableLoaders'
-    desc =
-        'Android Open Source library providing an interesting fillable progress view working with SVG paths.'
-    websiteUrl = siteUrl
-    issueTrackerUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders/issues'
-    vcsUrl = gitUrl
-    licenses = ['Apache-2.0']
-    labels = ['aar', 'android', 'progress', 'loader', 'fill', 'fillable']
-    publicDownloadNumbers = true
-  }
-}
+//bintray {
+//  user = bintrayUser
+//  key = bintrayKey
+//
+//  configurations = ['archives'] //When uploading configuration files
+//  pkg {
+//    repo = 'maven'
+//    name = 'AndroidFillableLoaders'
+//    desc =
+//        'Android Open Source library providing an interesting fillable progress view working with SVG paths.'
+//    websiteUrl = siteUrl
+//    issueTrackerUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders/issues'
+//    vcsUrl = gitUrl
+//    licenses = ['Apache-2.0']
+//    labels = ['aar', 'android', 'progress', 'loader', 'fill', 'fillable']
+//    publicDownloadNumbers = true
+//  }
+//}
 
 dependencies {
   compile libSupport
