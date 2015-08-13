@@ -105,6 +105,10 @@ Custom behavior
 If your loader / brand logo needs to you can suppress the stroke drawing animation and go directly for the
 filling one. To do that, just set `app:strokeDrawingDuration="0"`.
 
+Gradle dependency
+-----------------
+- TBA (Working on the deploy atm).
+
 Attributions
 ------------
 * The class `SvgPathParser` used to convert from String SVG Path format to Android SDK `Path` structures has been obtained from the
