@@ -25,6 +25,10 @@
           value="2"/>
       <enum name="waves"
           value="3"/>
+        <enum name="squares"
+            value="4"/>
+        <enum name="bites"
+            value="5"/>
     </attr>
   </declare-styleable>
 </resources>
