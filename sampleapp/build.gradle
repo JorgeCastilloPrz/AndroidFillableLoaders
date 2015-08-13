@@ -1,21 +1,13 @@
 apply plugin: 'com.android.application'
 
-repositories {
-  maven {
-    url "http://dl.bintray.com/jorgecastilloprz/maven"
-  }
-}
-
 android {
-  compileSdkVersion parent.ext.androidCompileSdkVersion
-  buildToolsVersion parent.ext.androidBuildToolsVersion
+  compileSdkVersion 22
+  buildToolsVersion "22.0.1"
 
   defaultConfig {
-    applicationId parent.ext.androidApplicationId
-    minSdkVersion parent.ext.androidMinSdkVersion
-    targetSdkVersion parent.ext.androidTargetSdkVersion
-    versionCode parent.ext.androidVersionCode
-    versionName parent.ext.androidVersionName
+    applicationId "com.github.jorgecastillo"
+    minSdkVersion 11
+    targetSdkVersion 22
   }
 
   buildTypes {
@@ -31,7 +23,7 @@ android {
 }
 
 dependencies {
-  compile project(':library')
+  compile 'com.github.jorgecastilloprz:fillableloaders:1.01@aar'
   compile libAppCompat
   compile libSupportDesign
   compile libViewInjection

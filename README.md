@@ -105,10 +105,24 @@ Custom behavior
 If your loader / brand logo needs to you can suppress the stroke drawing animation and go directly for the
 filling one. To do that, just set `app:strokeDrawingDuration="0"`.
 
-Gradle dependency
------------------
-- TBA (Working on the deploy atm).
+Add it to your project
+----------------------
 
+If you are working with gradle, add the dependency to your build.gradle file:
+```groovy
+dependencies{
+    compile 'com.github.jorgecastilloprz:fillableloaders:1.01@aar'
+}
+```
+if you are working with maven, do it into your pom.xml
+```xml
+<dependency>
+    <groupId>com.github.jorgecastilloprz</groupId>
+    <artifactId>fillableloaders</artifactId>
+    <version>1.01</version>
+    <type>aar</type>
+</dependency>
+```
 Attributions
 ------------
 * The class `SvgPathParser` used to convert from String SVG Path format to Android SDK `Path` structures has been obtained from the
