@@ -1,0 +1,51 @@
+group = 'com.github.jorgecastilloprz'
+version = '1.1'
+
+apply plugin: 'com.android.library'
+apply plugin: 'checkstyle'
+apply plugin: 'com.jfrog.bintray'
+
+android {
+  compileSdkVersion parent.ext.androidCompileSdkVersion
+  buildToolsVersion parent.ext.androidBuildToolsVersion
+
+  defaultConfig {
+    minSdkVersion parent.ext.androidMinSdkVersion
+    targetSdkVersion parent.ext.androidTargetSdkVersion
+    versionCode parent.ext.androidVersionCode
+    versionName parent.ext.androidVersionName
+    archivesBaseName = "AndroidFillableLoader"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+def siteUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders'
+def gitUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders.git'
+
+bintray {
+  user = bintrayUser
+  key = bintrayKey
+
+  configurations = ['archives'] //When uploading configuration files
+  pkg {
+    repo = 'maven'
+    name = 'AndroidFillableLoaders'
+    desc =
+        'Android Open Source library providing an interesting fillable progress view working with SVG paths.'
+    websiteUrl = siteUrl
+    issueTrackerUrl = 'https://github.com/JorgeCastilloPrz/AndroidFillableLoaders/issues'
+    vcsUrl = gitUrl
+    licenses = ['Apache-2.0']
+    labels = ['aar', 'android', 'progress', 'loader', 'fill', 'fillable']
+    publicDownloadNumbers = true
+  }
+}
+
+dependencies {
+  compile libSupport
+}

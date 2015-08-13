@@ -1,0 +1,44 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.2.3'
+    classpath 'com.github.dcendents:android-maven-plugin:1.2'
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+  }
+}
+
+allprojects {
+  ext {
+    // Android config
+    androidCompileSdkVersion = 22
+    androidBuildToolsVersion = "22.0.1"
+    androidMinSdkVersion = 11
+    androidTargetSdkVersion = 22
+    androidApplicationId = 'com.github.jorgecastillo'
+    androidVersionCode = 1
+    androidVersionName = '1.01'
+
+    // Libraries
+    libAppCompat = 'com.android.support:appcompat-v7:22.2.0'
+    libSupport = 'com.android.support:support-v4:22.2.0'
+    libSupportDesign = 'com.android.support:design:22.2.1'
+    libViewInjection = 'com.jakewharton:butterknife:7.0.1'
+  }
+
+  repositories {
+    jcenter()
+  }
+
+  apply plugin: 'checkstyle'
+
+  task checkstyle(type: Checkstyle) {
+    configFile file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    classpath = files()
+  }
+}

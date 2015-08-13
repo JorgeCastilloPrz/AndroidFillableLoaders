@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="strokeWidth">1dp</dimen>
+  <dimen name="fourthSampleViewSize">185dp</dimen>
+  <dimen name="fourthSampleStrokeWidth">2dp</dimen>
+</resources>

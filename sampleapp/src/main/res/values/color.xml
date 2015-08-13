@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="primary">#FF5722</color>
+  <color name="primary_dark">#E64A19</color>
+  <color name="ripple">#FF7043</color>
+  <color name="pager_indicator">#EA9B08</color>
+  <color name="gray_backgrouns">#e7e7e7</color>
+  <color name="card_white">#fafafa</color>
+  <color name="accent">#009688</color>
+  <color name="white">#FFFFFF</color>
+  <color name="black">#000000</color>
+  <color name="sample_green">#00B551</color>
+</resources>

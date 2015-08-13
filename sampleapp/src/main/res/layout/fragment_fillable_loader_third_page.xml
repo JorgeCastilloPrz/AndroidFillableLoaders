@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <com.github.jorgecastillo.FillableLoader
+      android:id="@+id/fillableLoader"
+      android:layout_width="306dp"
+      android:layout_height="102dp"
+      app:fillColor="#13579e"
+      app:strokeColor="#13579e"
+      app:originalWidth="3066"
+      app:originalHeight="1024"
+      app:strokeDrawingDuration="2000"
+      app:fillDuration="5000"
+      app:clippingTransform="rounded"
+      android:layout_gravity="center"
+      />
+
+</FrameLayout>

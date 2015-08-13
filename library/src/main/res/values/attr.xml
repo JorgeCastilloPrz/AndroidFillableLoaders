@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="FillableLoader">
+    <attr name="fillColor"
+        format="color"/>
+    <attr name="strokeColor"
+        format="color"/>
+    <attr name="strokeWidth"
+        format="dimension"/>
+    <attr name="originalWidth"
+        format="integer"/>
+    <attr name="originalHeight"
+        format="integer"/>
+    <attr name="strokeDrawingDuration"
+        format="integer"/>
+    <attr name="fillDuration"
+        format="integer"/>
+    <attr name="clippingTransform"
+        format="enum">
+      <enum name="plain"
+          value="0"/>
+      <enum name="spikes"
+          value="1"/>
+      <enum name="rounded"
+          value="2"/>
+      <enum name="waves"
+          value="3"/>
+    </attr>
+  </declare-styleable>
+</resources>
