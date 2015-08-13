@@ -9,7 +9,7 @@ import android.view.View;
  * @author truizlop
  * @since 13/08/2015
  */
-public abstract class BaseClippingTransform implements ClippingTransform{
+public abstract class BaseClippingTransform implements ClippingTransform {
 
     private int width, height;
 
@@ -30,11 +30,11 @@ public abstract class BaseClippingTransform implements ClippingTransform{
 
     protected abstract Path buildClippingPath();
 
-    protected int getWidth(){
+    protected int getWidth() {
         return width;
     }
 
-    protected int getHeight(){
+    protected int getHeight() {
         return height;
     }
 }
