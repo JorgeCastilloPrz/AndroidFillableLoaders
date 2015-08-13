@@ -15,36 +15,19 @@
  */
 package com.github.jorgecastillo.clippingtransforms;
 
-import android.graphics.Canvas;
 import android.graphics.Path;
-import android.graphics.Region;
-import android.view.View;
 
 /**
  * @author jorge
  * @since 12/08/15
  */
-public class SpikesClippingTransform implements ClippingTransform {
+public class SpikesClippingTransform extends BaseClippingTransform {
 
-  private int width, height;
-  private Path spikesPath;
+  protected Path buildClippingPath() {
+    int width = getWidth();
+    int height = getHeight();
 
-  @Override public void transform(Canvas canvas, float currentFillPhase, View view) {
-    cacheDimensions(view.getWidth(), view.getHeight());
-    buildClippingPath();
-    spikesPath.offset(0, height * -currentFillPhase);
-    canvas.clipPath(spikesPath, Region.Op.DIFFERENCE);
-  }
-
-  private void cacheDimensions(int width, int height) {
-    if (this.width == 0 || this.height == 0) {
-      this.width = width;
-      this.height = height;
-    }
-  }
-
-  private void buildClippingPath() {
-    spikesPath = new Path();
+    Path spikesPath = new Path();
     float heightDiff = width * 1f / 32;
     float widthDiff = width * 1f / 32;
     float startingHeight = height - heightDiff;
@@ -64,5 +47,7 @@ public class SpikesClippingTransform implements ClippingTransform {
     spikesPath.lineTo(width + 100, 0);
     spikesPath.lineTo(0, 0);
     spikesPath.close();
+
+    return spikesPath;
   }
 }

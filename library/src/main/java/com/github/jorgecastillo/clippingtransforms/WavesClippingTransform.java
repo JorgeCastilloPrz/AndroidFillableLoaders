@@ -15,43 +15,29 @@
  */
 package com.github.jorgecastillo.clippingtransforms;
 
-import android.graphics.Canvas;
 import android.graphics.Path;
-import android.graphics.Region;
-import android.view.View;
+
 import java.util.Random;
 
 /**
  * @author jorge
  * @since 12/08/15
  */
-public class WavesClippingTransform implements ClippingTransform {
+public class WavesClippingTransform extends BaseClippingTransform {
 
-  private int width, height;
-  private Path wavesPath;
   private int currentWave = 0;
+  private Path wavesPath;
 
-  @Override public void transform(Canvas canvas, float currentFillPhase, View view) {
-    cacheDimensions(view.getWidth(), view.getHeight());
-    buildClippingPath();
-    wavesPath.offset(0, height * -currentFillPhase);
-    canvas.clipPath(wavesPath, Region.Op.DIFFERENCE);
-  }
-
-  private void cacheDimensions(int width, int height) {
-    if (this.width == 0 || this.height == 0) {
-      this.width = width;
-      this.height = height;
-    }
-  }
-
-  private void buildClippingPath() {
+  protected Path buildClippingPath() {
     wavesPath = new Path();
     buildWaveAtIndex(currentWave++ % 128, 128);
+    return wavesPath;
   }
 
   private void buildWaveAtIndex(int index, int waveCount) {
 
+    int width = getWidth();
+    int height = getHeight();
     float startingHeight = height - 20;
     boolean initialOrLast = (index == 1 || index == waveCount);
 
@@ -129,7 +115,7 @@ public class WavesClippingTransform implements ClippingTransform {
   }
 
   private float randomFloat() {
-    return nextFloat(10) + height * 1f / 25;
+    return nextFloat(10) + getHeight() * 1f / 25;
   }
 
   private float nextFloat(float upperBound) {

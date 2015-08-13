@@ -15,19 +15,14 @@
  */
 package com.github.jorgecastillo.clippingtransforms;
 
-import android.graphics.Canvas;
 import android.graphics.Path;
-import android.graphics.Region;
-import android.view.View;
 
 /**
  * @author jorge
  * @since 12/08/15
  */
-public class RoundedClippingTransform implements ClippingTransform {
+public class RoundedClippingTransform extends BaseClippingTransform {
 
-  private int width, height;
-  private Path roundedPath;
   private float roundedEdgeHeight = 8f;
   private int waveCount = 32;
 
@@ -43,26 +38,13 @@ public class RoundedClippingTransform implements ClippingTransform {
     this.waveCount = waveCount;
   }
 
-  @Override public void transform(Canvas canvas, float currentFillPhase, View view) {
-    cacheDimensions(view.getWidth(), view.getHeight());
-    buildClippingPath();
-    roundedPath.offset(0, height * -currentFillPhase);
-    canvas.clipPath(roundedPath, Region.Op.DIFFERENCE);
-  }
 
-  private void cacheDimensions(int width, int height) {
-    if (this.width == 0 || this.height == 0) {
-      this.width = width;
-      this.height = height;
-    }
-  }
+  protected Path buildClippingPath() {
+    Path roundedPath = new Path();
 
-  private void buildClippingPath() {
-    roundedPath = new Path();
+    float widthDiff = getWidth() * 1f / (waveCount * 2);
 
-    float widthDiff = width * 1f / (waveCount * 2);
-
-    float startingHeight = height;
+    float startingHeight = getHeight();
     roundedPath.moveTo(0, startingHeight);
 
     float nextCPX = widthDiff;
@@ -78,9 +60,11 @@ public class RoundedClippingTransform implements ClippingTransform {
       nextX = nextCPX + widthDiff;
     }
 
-    roundedPath.lineTo(width + 100, startingHeight);
-    roundedPath.lineTo(width + 100, 0);
+    roundedPath.lineTo(getWidth() + 100, startingHeight);
+    roundedPath.lineTo(getWidth() + 100, 0);
     roundedPath.lineTo(0, 0);
     roundedPath.close();
+
+    return roundedPath;
   }
 }
