@@ -15,48 +15,69 @@
  */
 package com.github.jorgecastillo.clippingtransforms;
 
+import android.graphics.Canvas;
 import android.graphics.Path;
+import android.graphics.Region;
+import android.view.View;
 
 /**
  * @author truizlop
  * @since 12/08/15
  */
-public class BitesClippingTransform extends BaseClippingTransform {
+public class BitesClippingTransform implements ClippingTransform {
 
-  private float roundedEdgeHeight = 32f;
-  private int waveCount = 8;
+    private float roundedEdgeHeight = 32f;
+    private int waveCount = 8;
+    private int width, height;
 
-  public BitesClippingTransform() {
-  }
+    public BitesClippingTransform() {
+    }
 
-  public BitesClippingTransform(float roundedEdgeHeight, int waveCount) {
-      this.roundedEdgeHeight = roundedEdgeHeight;
-      this.waveCount = waveCount;
-  }
+    public BitesClippingTransform(float roundedEdgeHeight, int waveCount) {
+        this.roundedEdgeHeight = roundedEdgeHeight;
+        this.waveCount = waveCount;
+    }
 
-  protected Path buildClippingPath() {
-      Path roundedPath = new Path();
 
-      float widthDiff = getWidth() * 1f / (waveCount * 2);
 
-      float startingHeight = getHeight();
-      roundedPath.moveTo(0, startingHeight);
+    @Override
+    public void transform(Canvas canvas, float currentFillPhase, View view) {
+        cacheDimensions(view.getWidth(), view.getHeight());
+        Path path = buildClippingPath();
+        path.offset(0, height * -currentFillPhase);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+    }
 
-      float nextCPX = widthDiff;
-      float nextCPY = startingHeight + roundedEdgeHeight;
-      float nextX = nextCPX + widthDiff;
+    private void cacheDimensions(int width, int height) {
+        if (this.width == 0 || this.height == 0) {
+            this.width = width;
+            this.height = height;
+        }
+    }
 
-      for (int i = 0; i < waveCount; i++) {
-          roundedPath.quadTo(nextCPX, nextCPY, nextX, startingHeight);
-          nextCPX = nextX + widthDiff;
-          nextX = nextCPX + widthDiff;
-      }
+    protected Path buildClippingPath() {
+        Path roundedPath = new Path();
 
-      roundedPath.lineTo(getHeight() + 100, startingHeight);
-      roundedPath.lineTo(getHeight() + 100, 0);
-      roundedPath.lineTo(0, 0);
-      roundedPath.close();
+        float widthDiff = width * 1f / (waveCount * 2);
 
-      return roundedPath;
-  }
+        float startingHeight = height;
+        roundedPath.moveTo(0, startingHeight);
+
+        float nextCPX = widthDiff;
+        float nextCPY = startingHeight + roundedEdgeHeight;
+        float nextX = nextCPX + widthDiff;
+
+        for (int i = 0; i < waveCount; i++) {
+            roundedPath.quadTo(nextCPX, nextCPY, nextX, startingHeight);
+            nextCPX = nextX + widthDiff;
+            nextX = nextCPX + widthDiff;
+        }
+
+        roundedPath.lineTo(height + 100, startingHeight);
+        roundedPath.lineTo(height + 100, 0);
+        roundedPath.lineTo(0, 0);
+        roundedPath.close();
+
+        return roundedPath;
+    }
 }
