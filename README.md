@@ -1,6 +1,7 @@
 Android FillableLoaders
 =======================
 [![Build Status](https://travis-ci.org/JorgeCastilloPrz/AndroidFillableLoaders.svg?branch=master)](https://travis-ci.org/JorgeCastilloPrz/AndroidFillableLoaders)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidFillableLoaders-green.svg?style=flat)](https://android-arsenal.com/details/1/2302)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.jorgecastilloprz/fillableloaders/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.jorgecastilloprz/fillableloaders)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 
