@@ -23,12 +23,16 @@ public class TransformFactoryImpl implements TransformAbstractFactory {
 
   @Override public ClippingTransform getClippingTransformFor(int value) {
     switch (value) {
-      case 0:
+      case FillMode.PLAIN:
         return new PlainClippingTransform();
-      case 1:
+      case FillMode.SPIKES:
         return new SpikesClippingTransform();
-      case 2:
+      case FillMode.ROUNDED:
         return new RoundedClippingTransform();
+      case FillMode.SQUARES:
+        return new SquareClippingTransform();
+      case FillMode.BITES:
+        return new BitesClippingTransform();
       default:
         return new WavesClippingTransform();
     }

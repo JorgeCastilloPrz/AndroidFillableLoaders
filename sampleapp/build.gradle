@@ -23,7 +23,8 @@ android {
 }
 
 dependencies {
-  compile 'com.github.jorgecastilloprz:fillableloaders:1.01@aar'
+  compile project(':library')
+//  compile 'com.github.jorgecastilloprz:fillableloaders:1.01@aar'
   compile libAppCompat
   compile libSupportDesign
   compile libViewInjection
