@@ -7,6 +7,7 @@ Android FillableLoaders
 
 Android Open Source library providing an interesting fillable progress view working with SVG paths.
 This is a nice option too if you want to create an interesting branding logo for your app.
+
 Check [this blog post](http://jorgecastillo.xyz/2015/08/16/android-fillable-loaders/) in order to get more technical details about the library.
 
 Sample Video
