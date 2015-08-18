@@ -21,7 +21,7 @@ package com.github.jorgecastillo;
  * @author jorge
  * @since 7/08/15
  */
-class State {
+public class State {
   public static final int NOT_STARTED = 0;
   public static final int TRACE_STARTED = 1;
   public static final int FILL_STARTED = 2;

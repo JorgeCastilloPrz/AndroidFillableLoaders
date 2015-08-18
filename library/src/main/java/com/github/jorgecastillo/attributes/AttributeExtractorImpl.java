@@ -59,40 +59,40 @@ public class AttributeExtractorImpl implements AttributeExtractor {
   }
 
   @Override public int getStrokeColor() {
-    return attributeArray().getColor(R.styleable.FillableLoader_strokeColor,
+    return attributeArray().getColor(R.styleable.FillableLoader_fl_strokeColor,
         context().getResources().getColor(R.color.strokeColor));
   }
 
   @Override public int getFillColor() {
-    return attributeArray().getColor(R.styleable.FillableLoader_fillColor,
+    return attributeArray().getColor(R.styleable.FillableLoader_fl_fillColor,
         context().getResources().getColor(R.color.fillColor));
   }
 
   @Override public int getStrokeWidth() {
-    return attributeArray().getDimensionPixelSize(R.styleable.FillableLoader_strokeWidth, context().
+    return attributeArray().getDimensionPixelSize(R.styleable.FillableLoader_fl_strokeWidth, context().
         getResources().getDimensionPixelSize(R.dimen.strokeWidth));
   }
 
   @Override public int getOriginalWidth() {
-    return attributeArray().getInteger(R.styleable.FillableLoader_originalWidth, -1);
+    return attributeArray().getInteger(R.styleable.FillableLoader_fl_originalWidth, -1);
   }
 
   @Override public int getOriginalHeight() {
-    return attributeArray().getInteger(R.styleable.FillableLoader_originalHeight, -1);
+    return attributeArray().getInteger(R.styleable.FillableLoader_fl_originalHeight, -1);
   }
 
   @Override public int getStrokeDrawingDuration() {
-    return attributeArray().getInteger(R.styleable.FillableLoader_strokeDrawingDuration,
+    return attributeArray().getInteger(R.styleable.FillableLoader_fl_strokeDrawingDuration,
         context().getResources().getInteger(R.integer.strokeDrawingDuration));
   }
 
   @Override public int getFillDuration() {
-    return attributeArray().getInteger(R.styleable.FillableLoader_fillDuration,
+    return attributeArray().getInteger(R.styleable.FillableLoader_fl_fillDuration,
         context().getResources().getInteger(R.integer.fillDuration));
   }
 
   @Override public ClippingTransform getClippingTransform() {
-    int value = attributeArray().getInteger(R.styleable.FillableLoader_clippingTransform, 0);
+    int value = attributeArray().getInteger(R.styleable.FillableLoader_fl_clippingTransform, 0);
     return transformFactory.getClippingTransformFor(value);
   }
 

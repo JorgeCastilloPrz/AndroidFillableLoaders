@@ -54,18 +54,18 @@ And to include it into your layout:
   android:id="@+id/fillableLoader"
   android:layout_width="200dp"
   android:layout_height="100dp"
-  app:originalWidth="@integer/original_svg_width"
-  app:originalHeight="@integer/original_svg_height"
-  app:strokeColor="@color/stroke_color"
-  app:fillColor="@color/fill_color"
-  app:strokeWidth="@dimen/stroke_width"
-  app:strokeDrawingDuration="@integer/stroke_drawing_duration"
-  app:fillDuration="@integer/fill_duration"
-  app:clippingTransform="waves"
+  app:fl_originalWidth="@integer/original_svg_width"
+  app:fl_originalHeight="@integer/original_svg_height"
+  app:fl_strokeColor="@color/stroke_color"
+  app:fl_fillColor="@color/fill_color"
+  app:fl_strokeWidth="@dimen/stroke_width"
+  app:fl_strokeDrawingDuration="@integer/stroke_drawing_duration"
+  app:fl_fillDuration="@integer/fill_duration"
+  app:fl_clippingTransform="waves"
   />
 
   <!--
-  Default supported clipping transforms: "plain", "spikes", "rounded" and "waves".
+  Default supported clipping transforms: "plain", "spikes", "rounded", "waves", "squares" and "bites".
   Read "Customize filling" section to implement a custom one.
   -->
 ```
@@ -89,6 +89,25 @@ fillableLoader = loaderBuilder
 The only **required arguments** which does not have default values are the original dimensions from the svg image,
 and the svg path. Both of them are needed in order to get everything working properly. You can omit the other
 ones if you want.
+
+Listen to State change
+----------------------
+In order to allow reaction to every `State` switch (`NOT_STARTED` -> `TRACE_STARTED` -> `FILL_STARTED` -> `FINISHED`)
+you must implement `OnStateChangeListener` and override its `onStateChange(int state)` method.
+
+```java
+@Override public void onStateChange(int state) {
+  ((MainActivity) getActivity()).showStateHint(state);
+
+  switch(state) {
+    case State.FILL_STARTED:
+      ...
+      break;
+    case State.FINISHED:
+      ...
+  }
+}
+```
 
 Customize filling
 -----------------
@@ -122,7 +141,7 @@ Add it to your project
 If you are working with gradle, add the dependency to your build.gradle file:
 ```groovy
 dependencies{
-    compile 'com.github.jorgecastilloprz:fillableloaders:1.01@aar'
+    compile 'com.github.jorgecastilloprz:fillableloaders:1.02@aar'
 }
 ```
 if you are working with maven, do it into your pom.xml
@@ -130,7 +149,7 @@ if you are working with maven, do it into your pom.xml
 <dependency>
     <groupId>com.github.jorgecastilloprz</groupId>
     <artifactId>fillableloaders</artifactId>
-    <version>1.01</version>
+    <version>1.02</version>
     <type>aar</type>
 </dependency>
 ```

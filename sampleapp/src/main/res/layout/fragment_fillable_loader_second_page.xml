@@ -9,11 +9,11 @@
       android:id="@+id/fillableLoader"
       android:layout_width="211dp"
       android:layout_height="300dp"
-      app:fillColor="#EF5350"
-      app:originalWidth="2114"
-      app:originalHeight="3000"
-      app:clippingTransform="spikes"
-      app:fillDuration="5000"
+      app:fl_fillColor="#EF5350"
+      app:fl_originalWidth="2114"
+      app:fl_originalHeight="3000"
+      app:fl_clippingTransform="spikes"
+      app:fl_fillDuration="5000"
       android:layout_gravity="center"
       />
 

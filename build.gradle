@@ -22,8 +22,8 @@ allprojects {
     androidMinSdkVersion = 11
     androidTargetSdkVersion = 22
     androidApplicationId = 'com.github.jorgecastillo'
-    androidVersionCode = 1
-    androidVersionName = '1.00'
+    androidVersionCode = 3
+    androidVersionName = '1.02'
 
     // Libraries
     libAppCompat = 'com.android.support:appcompat-v7:22.2.0'

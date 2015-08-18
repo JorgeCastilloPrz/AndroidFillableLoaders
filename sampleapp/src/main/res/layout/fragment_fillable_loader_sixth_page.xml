@@ -9,12 +9,12 @@
       android:id="@+id/fillableLoader"
       android:layout_width="250dp"
       android:layout_height="250dp"
-      app:fillColor="#E91E63"
-      app:originalWidth="512"
-      app:originalHeight="512"
-      app:strokeDrawingDuration="1000"
-      app:fillDuration="10000"
-      app:clippingTransform="waves"
+      app:fl_fillColor="#E91E63"
+      app:fl_originalWidth="512"
+      app:fl_originalHeight="512"
+      app:fl_strokeDrawingDuration="1000"
+      app:fl_fillDuration="10000"
+      app:fl_clippingTransform="waves"
       android:layout_gravity="center"
       />
 

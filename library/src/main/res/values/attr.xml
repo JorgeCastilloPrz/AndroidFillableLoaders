@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <declare-styleable name="FillableLoader">
-    <attr name="fillColor"
+    <attr name="fl_fillColor"
         format="color"/>
-    <attr name="strokeColor"
+    <attr name="fl_strokeColor"
         format="color"/>
-    <attr name="strokeWidth"
+    <attr name="fl_strokeWidth"
         format="dimension"/>
-    <attr name="originalWidth"
+    <attr name="fl_originalWidth"
         format="integer"/>
-    <attr name="originalHeight"
+    <attr name="fl_originalHeight"
         format="integer"/>
-    <attr name="strokeDrawingDuration"
+    <attr name="fl_strokeDrawingDuration"
         format="integer"/>
-    <attr name="fillDuration"
+    <attr name="fl_fillDuration"
         format="integer"/>
-    <attr name="clippingTransform"
+    <attr name="fl_clippingTransform"
         format="enum">
       <enum name="plain"
           value="0"/>
