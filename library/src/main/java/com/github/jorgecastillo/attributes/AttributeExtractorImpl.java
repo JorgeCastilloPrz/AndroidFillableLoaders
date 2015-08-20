@@ -123,7 +123,7 @@ public class AttributeExtractorImpl implements AttributeExtractor {
 
     public Builder with(AttributeSet attributeSet) {
       if (attributeSet == null) {
-        throw new IllegalArgumentException("Attribute set must nost be null!");
+        throw new IllegalArgumentException("Attribute set must not be null!");
       }
       weakAttrs = new WeakReference<AttributeSet>(attributeSet);
       return this;

@@ -21,7 +21,7 @@ import java.text.ParseException;
 
 /**
  * Entity to parse Svg paths to {@link Path} items understandable by the Android SDK. Obtained
- * from romainnurik Muzei implementation to avoid rewritting .
+ * from romainnurik Muzei implementation to avoid rewriting .
  *
  * @author romainnurik
  */
