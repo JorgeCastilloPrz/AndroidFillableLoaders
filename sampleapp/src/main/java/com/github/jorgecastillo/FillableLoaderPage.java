@@ -70,8 +70,13 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
       case 4:
         rootView = inflater.inflate(R.layout.fragment_fillable_loader_fifth_page, container, false);
         break;
-      default:
+      case 5:
         rootView = inflater.inflate(R.layout.fragment_fillable_loader_sixth_page, container, false);
+        break;
+      default:
+        rootView =
+            inflater.inflate(R.layout.fragment_fillable_loader_seventh_page, container, false);
+        break;
     }
 
     return rootView;
@@ -93,6 +98,23 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
       fillableLoader = loaderBuilder.parentView((FrameLayout) rootView)
           .svgPath(Paths.JOB_AND_TALENT)
           .layoutParams(params)
+          .originalDimensions(970, 970)
+          .strokeColor(Color.parseColor("#1c9ade"))
+          .fillColor(Color.parseColor("#1c9ade"))
+          .strokeDrawingDuration(2000)
+          .clippingTransform(new WavesClippingTransform())
+          .fillDuration(10000)
+          .build();
+    } else if (pageNum == 6) {
+      int viewSize = getResources().getDimensionPixelSize(R.dimen.fourthSampleViewSize);
+      FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(viewSize, viewSize);
+      params.gravity = Gravity.CENTER;
+
+      FillableLoaderBuilder loaderBuilder = new FillableLoaderBuilder();
+      fillableLoader = loaderBuilder.parentView((FrameLayout) rootView)
+          .svgPath(Paths.JOB_AND_TALENT)
+          .layoutParams(params)
+          .percentage(30)
           .originalDimensions(970, 970)
           .strokeColor(Color.parseColor("#1c9ade"))
           .fillColor(Color.parseColor("#1c9ade"))

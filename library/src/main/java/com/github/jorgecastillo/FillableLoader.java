@@ -68,11 +68,33 @@ public class FillableLoader extends View {
   private OnStateChangeListener stateChangeListener;
 
   /**
+   * Whether the percentage mode is enabled or not. When the percentage mode is enabled then the
+   * filling animation will cover part of the loader, up to the {@link #percentage} value.
+   */
+  private boolean percentageEnabled;
+
+  /**
+   * The percentage that this view should load up to.
+   */
+  private float percentage;
+
+  /**
+   * The percentage that the previous {@link #onDraw(Canvas)} displayed on the screen.
+   */
+  private float previousFramePercentage;
+
+  /**
+   * The time in millis when the {@link #previousFramePercentage} was displayed on the screen.
+   */
+  private long previousFramePercentageTime;
+
+  /**
    * Constructor for the {@link FillableLoaderBuilder} class.
    */
   FillableLoader(ViewGroup parent, ViewGroup.LayoutParams params, int strokeColor, int fillColor,
       int strokeWidth, int originalWidth, int originalHeight, int strokeDrawingDuration,
-      int fillDuration, ClippingTransform transform, String svgPath) {
+      int fillDuration, ClippingTransform transform, String svgPath, boolean percentageEnabled,
+      float percentage) {
 
     super(parent.getContext());
 
@@ -85,6 +107,8 @@ public class FillableLoader extends View {
     this.originalWidth = originalWidth;
     this.originalHeight = originalHeight;
     this.svgPath = svgPath;
+    this.percentageEnabled = percentageEnabled;
+    this.percentage = percentage;
 
     init();
     parent.addView(this, params);
@@ -150,7 +174,7 @@ public class FillableLoader extends View {
   public void start() {
     checkRequirements();
     initialTime = System.currentTimeMillis();
-    changeState(State.TRACE_STARTED);
+    changeState(State.STROKE_STARTED);
     ViewCompat.postInvalidateOnAnimation(this);
   }
 
@@ -173,8 +197,12 @@ public class FillableLoader extends View {
     }
   }
 
+  /**
+   * Resets the fillable loader. Means that the whole loader stroke + fill disappears.
+   */
   public void reset() {
     initialTime = 0;
+    previousFramePercentage = 0;
     changeState(State.NOT_STARTED);
     ViewCompat.postInvalidateOnAnimation(this);
   }
@@ -197,23 +225,19 @@ public class FillableLoader extends View {
     if (!hasToDraw()) {
       return;
     }
-
     long elapsedTime = System.currentTimeMillis() - initialTime;
-
-    float phase = MathUtil.constrain(0, 1, elapsedTime * 1f / strokeDrawingDuration);
-    float distance = animInterpolator.getInterpolation(phase) * pathData.length;
-
-    dashPaint.setPathEffect(getDashPathForDistance(distance));
-    canvas.drawPath(pathData.path, dashPaint);
-
+    drawStroke(canvas, elapsedTime);
     if (isStrokeTotallyDrawn(elapsedTime)) {
       if (drawingState < State.FILL_STARTED) {
         changeState(State.FILL_STARTED);
+        previousFramePercentageTime = System.currentTimeMillis() - initialTime;
       }
-
-      float fillPhase =
-          MathUtil.constrain(0, 1, (elapsedTime - strokeDrawingDuration) * 1f / fillDuration);
-
+      float fillPhase;
+      if (percentageEnabled) {
+        fillPhase = getFillPhaseForPercentage(elapsedTime);
+      } else {
+        fillPhase = getFillPhaseWithoutPercentage(elapsedTime);
+      }
       clippingTransform.transform(canvas, fillPhase, this);
       canvas.drawPath(pathData.path, fillPaint);
     }
@@ -225,6 +249,31 @@ public class FillableLoader extends View {
     }
   }
 
+  private void drawStroke(Canvas canvas, long elapsedTime) {
+    float phase = MathUtil.constrain(0, 1, elapsedTime * 1f / strokeDrawingDuration);
+    float distance = animInterpolator.getInterpolation(phase) * pathData.length;
+
+    dashPaint.setPathEffect(getDashPathForDistance(distance));
+    canvas.drawPath(pathData.path, dashPaint);
+  }
+
+  public boolean isStrokeTotallyDrawn(long elapsedTime) {
+    return elapsedTime > strokeDrawingDuration;
+  }
+
+  private float getFillPhaseForPercentage(long elapsedTime) {
+    float fillPhase = MathUtil.constrain(0, percentage / 100,
+        previousFramePercentage / 100 + ((float) (elapsedTime - previousFramePercentageTime)
+            / fillDuration));
+    previousFramePercentage = fillPhase * 100;
+    previousFramePercentageTime = System.currentTimeMillis() - initialTime;
+    return fillPhase;
+  }
+
+  private float getFillPhaseWithoutPercentage(long elapsedTime) {
+    return MathUtil.constrain(0, 1, (float) (elapsedTime - strokeDrawingDuration) / fillDuration);
+  }
+
   public boolean hasToDraw() {
     return !(drawingState == State.NOT_STARTED || pathData == null);
   }
@@ -233,12 +282,12 @@ public class FillableLoader extends View {
     return new DashPathEffect(new float[] { distance, pathData.length }, 0);
   }
 
-  public boolean isStrokeTotallyDrawn(long elapsedTime) {
-    return elapsedTime > strokeDrawingDuration;
-  }
-
   private boolean hasToKeepDrawing(long elapsedTime) {
-    return elapsedTime < strokeDrawingDuration + fillDuration;
+    if (percentageEnabled) {
+      return previousFramePercentage < 100;
+    } else {
+      return elapsedTime < strokeDrawingDuration + fillDuration;
+    }
   }
 
   public void setOnStateChangeListener(OnStateChangeListener onStateChangeListener) {
@@ -292,6 +341,26 @@ public class FillableLoader extends View {
     }
     this.svgPath = svgPath;
     buildPathData();
+  }
+
+  public void setPercentage(float percentage) {
+    if (drawingState == State.NOT_STARTED) {
+      this.percentageEnabled = true;
+      this.percentage = percentage;
+    } else if (drawingState == State.FINISHED) {
+      throw new UnsupportedOperationException("Loading has already finished.");
+    } else if (drawingState == State.STROKE_STARTED) {
+      this.percentageEnabled = true;
+      this.percentage = percentage;
+    } else if (drawingState == State.FILL_STARTED) {
+      if (percentageEnabled) {
+        this.percentage = percentage;
+      } else {
+        throw new UnsupportedOperationException(
+            "Cannot move to percentage tracking loader half way through loading");
+      }
+      ViewCompat.postInvalidateOnAnimation(this);
+    }
   }
 
   private void buildPathData() {
