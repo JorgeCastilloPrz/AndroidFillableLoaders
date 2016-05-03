@@ -15,6 +15,8 @@
         format="integer"/>
     <attr name="fl_fillDuration"
         format="integer"/>
+    <attr name="fl_fillPercentage"
+        format="integer"/>
     <attr name="fl_clippingTransform"
         format="enum">
       <enum name="plain"

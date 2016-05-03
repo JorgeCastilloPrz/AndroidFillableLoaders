@@ -23,6 +23,7 @@ public class FillablePagesAdapter extends FragmentStatePagerAdapter {
   private FillableLoaderPage fifthPage;
   private FillableLoaderPage sixthPage;
   private FillableLoaderPage seventhPage;
+  private FillableLoaderPage eighthPage;
 
   public FillablePagesAdapter(FragmentManager fm) {
     super(fm);
@@ -33,6 +34,7 @@ public class FillablePagesAdapter extends FragmentStatePagerAdapter {
     fifthPage = FillableLoaderPage.newInstance(4);
     sixthPage = FillableLoaderPage.newInstance(5);
     seventhPage = FillableLoaderPage.newInstance(6);
+    eighthPage = FillableLoaderPage.newInstance(7);
   }
 
   @Override public Fragment getItem(int position) {
@@ -40,7 +42,7 @@ public class FillablePagesAdapter extends FragmentStatePagerAdapter {
   }
 
   @Override public int getCount() {
-    return 7;
+    return 8;
   }
 
   private Fragment getFragmentForPosition(int position) {
@@ -57,6 +59,10 @@ public class FillablePagesAdapter extends FragmentStatePagerAdapter {
         return fifthPage;
       case 5:
         return sixthPage;
+      case 6:
+        return seventhPage;
+      case 7:
+        return eighthPage;
       default:
         return seventhPage;
     }
@@ -76,6 +82,10 @@ public class FillablePagesAdapter extends FragmentStatePagerAdapter {
         return "Waves";
       case 5:
         return "Waves";
+      case 6:
+        return "Waves Percentage";
+      case 7:
+        return "Waves 40%";
       default:
         return "Waves Percentage";
     }

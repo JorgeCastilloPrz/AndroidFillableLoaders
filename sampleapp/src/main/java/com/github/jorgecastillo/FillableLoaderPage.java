@@ -76,6 +76,14 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
       case 5:
         rootView = inflater.inflate(R.layout.fragment_fillable_loader_sixth_page, container, false);
         break;
+      case 6:
+        rootView =
+                inflater.inflate(R.layout.fragment_fillable_loader_seventh_page, container, false);
+        break;
+      case 7:
+        rootView =
+                inflater.inflate(R.layout.fragment_fillable_loader_eighth_page, container, false);
+        break;
       default:
         rootView =
             inflater.inflate(R.layout.fragment_fillable_loader_seventh_page, container, false);
