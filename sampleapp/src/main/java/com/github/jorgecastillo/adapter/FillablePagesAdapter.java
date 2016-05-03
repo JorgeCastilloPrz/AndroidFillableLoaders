@@ -77,7 +77,7 @@ public class FillablePagesAdapter extends FragmentStatePagerAdapter {
       case 5:
         return "Waves";
       default:
-        return "Waves 30%";
+        return "Waves Percentage";
     }
   }
 }
