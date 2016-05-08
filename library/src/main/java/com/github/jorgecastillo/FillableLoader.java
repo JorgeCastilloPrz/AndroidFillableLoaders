@@ -94,7 +94,7 @@ public class FillableLoader extends View {
   FillableLoader(ViewGroup parent, ViewGroup.LayoutParams params, int strokeColor, int fillColor,
       int strokeWidth, int originalWidth, int originalHeight, int strokeDrawingDuration,
       int fillDuration, ClippingTransform transform, String svgPath, boolean percentageEnabled,
-      float percentage) {
+      float fillPercentage) {
 
     super(parent.getContext());
 
@@ -108,7 +108,7 @@ public class FillableLoader extends View {
     this.originalHeight = originalHeight;
     this.svgPath = svgPath;
     this.percentageEnabled = percentageEnabled;
-    this.percentage = percentage;
+    this.percentage = fillPercentage;
 
     init();
     parent.addView(this, params);
@@ -142,6 +142,10 @@ public class FillableLoader extends View {
     strokeDrawingDuration = extractor.getStrokeDrawingDuration();
     fillDuration = extractor.getFillDuration();
     clippingTransform = extractor.getClippingTransform();
+    percentage = extractor.getFillPercentage();
+    if (percentage != 100) {
+      percentageEnabled = true;
+    }
 
     extractor.recycleAttributes();
   }
