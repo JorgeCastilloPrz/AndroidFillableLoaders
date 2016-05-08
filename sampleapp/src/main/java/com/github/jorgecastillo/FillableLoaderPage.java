@@ -130,9 +130,9 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
           fillableLoader.setPercentage(progress);
         }
 
-        public void onStartTrackingTouch(SeekBar seekBar) {}
+        public void onStartTrackingTouch(SeekBar seekBar) { }
 
-        public void onStopTrackingTouch(SeekBar seekBar) {}
+        public void onStopTrackingTouch(SeekBar seekBar) { }
       });
 
       FillableLoaderBuilder loaderBuilder = new FillableLoaderBuilder();
