@@ -9,6 +9,9 @@ android {
     minSdkVersion 11
     targetSdkVersion 22
   }
+  lintOptions {
+    abortOnError false
+  }
 }
 
 dependencies {
@@ -16,3 +19,4 @@ dependencies {
 }
 
 apply from: '../maven_push.gradle'
+
