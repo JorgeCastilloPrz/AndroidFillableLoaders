@@ -19,12 +19,12 @@ android {
 
   lintOptions {
     disable 'InvalidPackage'
+    abortOnError false
   }
 }
 
 dependencies {
-  //  compile project(':library')
-  compile 'com.github.jorgecastilloprz:fillableloaders:1.02@aar'
+  compile project(':library')
   compile libAppCompat
   compile libSupportDesign
   compile libViewInjection

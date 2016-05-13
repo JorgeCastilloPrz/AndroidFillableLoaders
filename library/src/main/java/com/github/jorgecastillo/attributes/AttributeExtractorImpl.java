@@ -91,6 +91,10 @@ public class AttributeExtractorImpl implements AttributeExtractor {
         context().getResources().getInteger(R.integer.fillDuration));
   }
 
+  public int getFillPercentage() {
+    return attributeArray().getInteger(R.styleable.FillableLoader_fl_fillPercentage,
+            context().getResources().getInteger(R.integer.fillPercentage));
+  }
   @Override public ClippingTransform getClippingTransform() {
     int value = attributeArray().getInteger(R.styleable.FillableLoader_fl_clippingTransform, 0);
     return transformFactory.getClippingTransformFor(value);

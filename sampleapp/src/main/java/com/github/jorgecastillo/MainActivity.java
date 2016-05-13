@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.Bind;
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void showStateHint(int state) {
-    Snackbar.make(fab, "State changed callback: " + state, Snackbar.LENGTH_SHORT).show();
+    try {
+      Snackbar.make(fab, "State changed callback: " + state, Snackbar.LENGTH_SHORT).show();
+    } catch (NullPointerException e) {
+      Log.d("showStateHint", e.toString());
+    }
   }
 }

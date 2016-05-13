@@ -62,6 +62,7 @@ And to include it into your layout:
   app:fl_strokeDrawingDuration="@integer/stroke_drawing_duration"
   app:fl_fillDuration="@integer/fill_duration"
   app:fl_clippingTransform="waves"
+  app:fl_fillPercentage="@integer/fill_percentage"
   />
 
   <!--
@@ -135,6 +136,12 @@ Custom behavior
 If your loader / brand logo needs to you can suppress the stroke drawing animation and go directly for the
 filling one. To do that, just set `app:strokeDrawingDuration="0"`.
 
+If you only need to fill the pattern partially or you want to control the fill progress, you can use
+`fl_fillPercentage` xml (resource) property or if you want to control from Java use.
+```java
+fillableLoader.setPercentage(percent);
+```
+
 Add it to your project
 ----------------------
 
@@ -192,3 +199,4 @@ License
 [2]: ./art/demoRounded.gif
 [3]: ./art/demoSpikes.gif
 [4]: ./art/demoWaves.gif
+

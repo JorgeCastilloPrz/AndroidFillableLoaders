@@ -24,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.SeekBar;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform;
@@ -38,6 +40,7 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
   @Bind(R.id.fillableLoader) @Nullable FillableLoader fillableLoader;
   private View rootView;
   private int pageNum;
+  private int mPercentage = 20;
 
   public static FillableLoaderPage newInstance(int pageNum) {
     FillableLoaderPage page = new FillableLoaderPage();
@@ -70,8 +73,21 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
       case 4:
         rootView = inflater.inflate(R.layout.fragment_fillable_loader_fifth_page, container, false);
         break;
-      default:
+      case 5:
         rootView = inflater.inflate(R.layout.fragment_fillable_loader_sixth_page, container, false);
+        break;
+      case 6:
+        rootView =
+                inflater.inflate(R.layout.fragment_fillable_loader_seventh_page, container, false);
+        break;
+      case 7:
+        rootView =
+                inflater.inflate(R.layout.fragment_fillable_loader_eighth_page, container, false);
+        break;
+      default:
+        rootView =
+            inflater.inflate(R.layout.fragment_fillable_loader_seventh_page, container, false);
+        break;
     }
 
     return rootView;
@@ -93,6 +109,37 @@ public class FillableLoaderPage extends Fragment implements OnStateChangeListene
       fillableLoader = loaderBuilder.parentView((FrameLayout) rootView)
           .svgPath(Paths.JOB_AND_TALENT)
           .layoutParams(params)
+          .originalDimensions(970, 970)
+          .strokeColor(Color.parseColor("#1c9ade"))
+          .fillColor(Color.parseColor("#1c9ade"))
+          .strokeDrawingDuration(2000)
+          .clippingTransform(new WavesClippingTransform())
+          .fillDuration(10000)
+          .build();
+    } else if (pageNum == 6) {
+      int viewSize = getResources().getDimensionPixelSize(R.dimen.fourthSampleViewSize);
+      FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(viewSize, viewSize);
+      params.gravity = Gravity.CENTER;
+
+      SeekBar mSeekbar = (SeekBar) rootView.findViewById(R.id.PercentageSeekBar);
+      mSeekbar.setProgress(mPercentage);
+      mSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+      {
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+          mPercentage = progress;
+          fillableLoader.setPercentage(progress);
+        }
+
+        public void onStartTrackingTouch(SeekBar seekBar) { }
+
+        public void onStopTrackingTouch(SeekBar seekBar) { }
+      });
+
+      FillableLoaderBuilder loaderBuilder = new FillableLoaderBuilder();
+      fillableLoader = loaderBuilder.parentView((FrameLayout) rootView)
+          .svgPath(Paths.JOB_AND_TALENT)
+          .layoutParams(params)
+          .percentage(mPercentage)
           .originalDimensions(970, 970)
           .strokeColor(Color.parseColor("#1c9ade"))
           .fillColor(Color.parseColor("#1c9ade"))

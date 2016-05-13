@@ -38,6 +38,8 @@ public class FillableLoaderBuilder {
   private int originalHeight = -1;
   private int strokeDrawingDuration = -1;
   private int fillDuration = -1;
+  private boolean percentageEnabled;
+  private float percentage;
   private ClippingTransform clippingTransform;
   private String svgPath;
 
@@ -92,6 +94,15 @@ public class FillableLoaderBuilder {
     return this;
   }
 
+  public FillableLoaderBuilder percentage(float percentage) {
+    if (percentage < 0 || percentage > 100) {
+      throw new IllegalArgumentException("percentage needs to be a value from 0 to 100");
+    }
+    percentageEnabled = true;
+    this.percentage = percentage;
+    return this;
+  }
+
   public FillableLoader build() {
     Resources res = parent.getContext().getResources();
     strokeColor = strokeColor == -1 ? res.getColor(R.color.strokeColor) : strokeColor;
@@ -113,7 +124,8 @@ public class FillableLoaderBuilder {
     }
 
     return new FillableLoader(parent, params, strokeColor, fillColor, strokeWidth, originalWidth,
-        originalHeight, strokeDrawingDuration, fillDuration, clippingTransform, svgPath);
+        originalHeight, strokeDrawingDuration, fillDuration, clippingTransform, svgPath,
+        percentageEnabled, percentage);
   }
 
   private void throwArgumentException(String neededStuff) {
