@@ -11,17 +11,17 @@ env:
   global:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
    #   via the "travis encrypt" command using the project repo's public key
-   - secure: "Lqn0lCeA27/F6sZukXXhoC70BfzUkOYtixamnAuE52nOlQVBWW0hiua4ne6ihipUM/MzhxSiRhPZvNdqexjFTSs1ox8qok26ypwtJIAKBV9B/oXvlcFRcKJF+tvKQ1ALfFfztayAvxMahXN5e27cT8QVOqIh9tSJ1k7kqmFlKKYndf2Amj/C3S2IRydGkN2Cl5pEOorhUuTkPPlXVWukkYXAFaxjXGATEKnK2+1TWq8v5ezbsHy31IbkiRDf2395GvZFeQNjkvBmjxWXOanlV0LGMloLLYVrfjksEpYQF4PKlKHqxUEAlX8U2jFTgPrh9m4I4pHagqyA2Q2tzQ5hoeuCtjn9OnvfLynhNE2nMTrXj22PuhSccm6D5LG+cqDAiDkzxN5EQ0nNJ/7+POFfaZVhABFIG+qCSVBURMuPCmMkyC1cKERogXj2y/u1C+uFZ/HMqj66O/Yax1E8IkBgWw9bLIwrg2ptiHM20sKf1BIDgj57L4/D4uCelhAvn5Klbxza5JpGcwZFwRd8iKkMCn69J2m31FbSMxUUTWX46HVfbB8n6VAVhWIW4sBX8hO9PEmGCr0mbH2W5ciyCM8ES/Tqo//VUoH08oAhdHi2YsrEWr3w+TBjm/KWCNj0GXyjF40b3DCfXsGl223hGW4rRxSNWUxbFykeXLaSMZUG2cE="
+   - secure: "vNXroNa7a6+feIWRG0DgVn/041uv+nwLXvfD+mJI3pMCaL2tvtXjJqifJDfIj8INtkWxba+Lw7WZ3OC1oNw2PbaFdF3006UXtO1AJxZ0M8moRYhku4RdHbLFDU3f2GH9cWalDlgedxPSFOxDI7Dy1Kbgp3vda9BHoRFiI9PaAhvDr4Sua8zJ+oS3BSYwge2n3CVStMhTXltg95XVLJN8QR2MIgEjDx0uX/qGPopmQw9I6TZZt2gZfWDxVcJ4Bz/qKIyTW8rh9NkZSflyiWh6044ymOJToe7BeH2n/w5DIE8KuEkTeSksQKp+l5jKHqjbVVg2WlEUR8/Gh+3/GXIxbxJBzrqLuHKWC8h4ZJNtbptT1ZGxDdTMhW6rGu5vP6oCTAsZ36AkN6bDJCtHECXbayi2cOsQhUquTtvPMlya8amI1Mixr0YlzQ4MBWhyzn5aupJGywHJNFWuFT31wHYvccMEaWiD92tue9qxSqfjGOA1aeDMPVLKoKYaN9wE1AlSIpMYvwWQTnHoLdfGacGNyLm2gLJlu7AnHMm+vwRX69rF/51R5fy1e2pWF7gZCz1OQu5H2LXqGgBms7lV8hFc6lsSSqPEEglrga90MRX1bFRla0uzyJ69z4LGfkZ12I66sWKKjGWJEoNLE2xE1gm9C6syYfStIX1ikTyk3ywJQxo="
 
 addons:
   coverity_scan:
     project:
       name: "JorgeCastilloPrz/AndroidFillableLoaders"
-      description: "FillableLoader library and sample app"
-    notification_email: ""
+      description: "FillableLoader Android library and sample app"
+    notification_email: jorge.castillo.prz@gmail.com
     build_command_prepend: ""
     build_command:   "./gradlew checkstyle build"
-    branch_pattern: master
+    branch_pattern: coverity_scan
 
 script:
   ./gradlew checkstyle build
