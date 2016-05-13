@@ -196,6 +196,7 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
+
 [1]: ./art/demoPlain.gif
 [2]: ./art/demoRounded.gif
 [3]: ./art/demoSpikes.gif
