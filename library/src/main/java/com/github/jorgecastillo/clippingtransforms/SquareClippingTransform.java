@@ -38,7 +38,7 @@ public class SquareClippingTransform implements ClippingTransform {
   protected Path buildClippingPath() {
 
     Path squaresPath = new Path();
-    int numSquares = (int) Math.ceil(width / (2 * squareSize));
+    int numSquares = (int) Math.ceil((double) width / (2 * squareSize));
     int startingHeight = height;
     int lowerHeight = startingHeight - squareSize;
     squaresPath.moveTo(0, startingHeight);
