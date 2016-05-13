@@ -21,7 +21,7 @@ addons:
     notification_email: jorge.castillo.prz@gmail.com
     build_command_prepend: ""
     build_command:   "./gradlew checkstyle build"
-    branch_pattern: coverity_scan
+    branch_pattern: develop
 
 script:
   ./gradlew checkstyle build
