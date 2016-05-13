@@ -148,7 +148,7 @@ Add it to your project
 If you are working with gradle, add the dependency to your build.gradle file:
 ```groovy
 dependencies{
-    compile 'com.github.jorgecastilloprz:fillableloaders:1.02@aar'
+    compile 'com.github.jorgecastilloprz:fillableloaders:1.03@aar'
 }
 ```
 if you are working with maven, do it into your pom.xml
@@ -156,7 +156,7 @@ if you are working with maven, do it into your pom.xml
 <dependency>
     <groupId>com.github.jorgecastilloprz</groupId>
     <artifactId>fillableloaders</artifactId>
-    <version>1.02</version>
+    <version>1.03</version>
     <type>aar</type>
 </dependency>
 ```
