@@ -248,8 +248,17 @@ public class FillableLoader extends View {
 
     if (hasToKeepDrawing(elapsedTime)) {
       ViewCompat.postInvalidateOnAnimation(this);
+      checkState();
     } else {
       changeState(State.FINISHED);
+    }
+  }
+
+  private void checkState() {
+    if (drawingState != State.FILL_FINISHED
+        && percentageEnabled
+        && previousFramePercentage >= percentage) {
+      changeState(State.FILL_FINISHED);
     }
   }
 
@@ -356,7 +365,9 @@ public class FillableLoader extends View {
     } else if (drawingState == State.STROKE_STARTED) {
       this.percentageEnabled = true;
       this.percentage = percentage;
-    } else if (drawingState == State.FILL_STARTED) {
+    } else if (drawingState == State.FILL_STARTED || drawingState == State.FILL_FINISHED) {
+      drawingState = State.FILL_STARTED;
+
       if (percentageEnabled) {
         this.percentage = percentage;
       } else {
