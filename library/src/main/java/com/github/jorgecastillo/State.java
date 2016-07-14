@@ -26,4 +26,5 @@ public class State {
   public static final int STROKE_STARTED = 1;
   public static final int FILL_STARTED = 2;
   public static final int FINISHED = 3;
+  public static final int FILL_FINISHED = 4;
 }
