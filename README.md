@@ -6,7 +6,7 @@ Android FillableLoaders
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0) [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
 [![coverity](https://scan.coverity.com/projects/8852/badge.svg)](https://scan.coverity.com/projects/jorgecastilloprz-androidfillableloaders)
 
-Android Open Source library providing an interesting fillable progress view working with SVG paths.
+Android Open Source library provides an interesting fillable progress view working with SVG paths.
 This is a nice option too if you want to create an interesting branding logo for your app.
 
 Check [this blog post](http://jorgecastillo.xyz/2015/08/16/android-fillable-loaders/) in order to get more technical details about the library.
@@ -71,7 +71,7 @@ And to include it into your layout:
   Read "Customize filling" section to implement a custom one.
   -->
 ```
-Or if you rather you can do it by code using the `FillableLoaderBuilder` class. It will get automatically
+Or if you, rather, you can do it by code using the `FillableLoaderBuilder` class. It will get automatically
 attached to the given parent view. Use the `LayoutParams` argument to position it:
 ```java
 FillableLoaderBuilder loaderBuilder = new FillableLoaderBuilder();
